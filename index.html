@@ -1,28 +1,39 @@
 <!DOCTYPE html>
-<html lange ="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="reset.css"/>
-        <link rel="stylesheet" href="style.css"/>
-        <title>odd-Duck</title>
-    </head>
-    <body>
-        <header>
-            <h1>Vote for the Odd-Duck</h1>
-        </header>
-        <main>
-            <section id="Duck">
+<html>
 
-            <img />
-            <img />
-            <img />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>odd-Duck</title>
+</head>
 
-            </section>
-            <section id="Report">
-            <button id="ShowResults">Show Results</button>
-            </section>
-        </main>
-        <script src="js/app.js"></script>
-    </body>
+<body>
+    <header>
+        <h1>Welcome to Odd Duck</h1>
+        <h2>Pick Your Picture</h2>
+    </header>
+    <main>
+      <button id="ShowResults">Show Results</button>
+      <section id="Duck">
+        <figure>
+        <img />
+        <figcaption></figcaption>
+        </figure>
+        <figure>
+           <img />
+           <figcaption></figcaption>
+        </figure>
+        <figure>
+            <img />
+            <figcaption></figcaption>
+        </figure>
+        </section>
+          <canvas id="Chart"></canvas>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
 </html>
