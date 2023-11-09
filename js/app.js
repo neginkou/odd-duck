@@ -1,5 +1,5 @@
 const DuckContainer = document.getElementById("Duck");
-const mychart = document.getElementById("Chart")
+const mychart = document.getElementById("mychart")
 const Button = document.getElementById("ShowResults");
 
 
@@ -28,6 +28,7 @@ function Duck(name, image) {
 }
 
 function renderDucks() {
+
   function pickRandomDuck() {
     return Math.floor(Math.random() * state.allDuck.length);
   }
@@ -109,8 +110,29 @@ const config = {
     }
   }
 }
-const myChart = new Chart(renderResults, config);
+const chart = new Chart(mychart, config);
 }
+
+
+function saveStateToLocalStorage() {
+  localStorage.setItem("duckState", JSON.stringify(state));
+}
+
+function loadStateFromLocalStorage() {
+  const storedState = localStorage.getItem("duckState");
+  if (storedState) {
+    state = JSON.parse(storedState);
+  }
+}
+
+window.addEventListener("beforeunload", () => {
+  saveStateToLocalStorage();
+});
+
+
+
+
+
 
 
 
@@ -125,7 +147,7 @@ function handleClick(event) {
   state.numClicksSoFar++;
 
   if (state.numClicksSoFar >= state.numClicksAllowed) {
-    removeListener();
+    removeEventListener();
     renderResultButton();
   } else {
     renderDucks();
@@ -136,7 +158,7 @@ function setupListener() {
   DuckContainer.addEventListener("click", handleClick);
   Button.addEventListener("click", renderResults);
 }
-function removeListener() {
+function removeEventListener() {
   DuckContainer.removeEventListener("click", handleClick);
 }
 
@@ -164,5 +186,4 @@ new Duck("Wine glass", "images/assets/wine-glass.jpg");
 
 renderDucks();
 setupListener();
-
-
+loadStateFromLocalStorage();
