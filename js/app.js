@@ -77,6 +77,10 @@ function renderResults() {
     DuckVotes.push(state.allDuck[i].votes);
     DuckViews.push(state.allDuck[i].views);
   }
+  DuckNames.push("Total Votes");
+  DuckVotes.push(state.totalVotes);
+  DuckViews.push(state.totalViews);
+
   console.log(DuckNames);
   console.log(DuckVotes);
   console.log(DuckViews);
@@ -91,26 +95,26 @@ function renderResults() {
         backgroundColor: ['green']
 
       },
-    {
-      label: 'Views',
-      data: DuckViews,
-      borderWidth: 1,
-      backgroundColor: ['rebeccapurple']
-    }
+      {
+        label: 'Views',
+        data: DuckViews,
+        borderWidth: 1,
+        backgroundColor: ['rebeccapurple']
+      }
     ]
-}
-const config = {
-  type: 'bar',
-  data: data,
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
+  }
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
       }
     }
   }
-}
-const chart = new Chart(mychart, config);
+  const chart = new Chart(mychart, config);
 }
 
 
@@ -128,19 +132,12 @@ function loadStateFromLocalStorage() {
 window.addEventListener("beforeunload", () => {
   saveStateToLocalStorage();
 });
-
-
-
-
-
-
-
-
 function handleClick(event) {
   let DuckName = event.target.alt;
   for (let i = 0; i < state.allDuck.length; i++) {
     if (DuckName === state.allDuck[i].name) {
       state.allDuck[i].votes++;
+      state.totalVotes++;
       break;
     }
   }
